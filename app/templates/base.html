@@ -9,7 +9,7 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="{{ c.ORG.name }}"><meta property="og:title" content="{{ t or c.ORG.name }}"><meta property="og:description" content="{{ d }}"><meta property="og:url" content="{{ canonical }}">
 {% if static_exists('images/hero/hero.jpg') %}<meta property="og:image" content="{{ site_url }}{{ url_for('static', filename='images/hero/hero.jpg') }}">{% endif %}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ t or c.ORG.name }}"><meta name="twitter:description" content="{{ d }}">
-<meta name="theme-color" content="#06222C">
+<meta name="theme-color" content="#05396A">
 {% block robots %}{% endblock %}
 <link rel="icon" href="{{ url_for('static', filename='images/logo/favicon.png' if static_exists('images/logo/favicon.png') else 'icons/favicon.svg') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
