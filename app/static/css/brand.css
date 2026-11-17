@@ -10,9 +10,9 @@
   --bg-mother:url("../images/backgrounds/03-mother-and-child.jpg");
   --bg-youth:url("../images/backgrounds/04-youth-community-dialogue.jpg");
   --bg-impact:url("../images/backgrounds/05-public-health-impact-footer.jpg");
-  --ov-left:linear-gradient(90deg,rgba(5,47,85,.93) 0%,rgba(5,47,85,.62) 55%,rgba(5,47,85,.34) 100%);
-  --ov-flat:linear-gradient(rgba(5,47,85,.78),rgba(5,47,85,.78));
-  --ov-foot:linear-gradient(180deg,rgba(5,47,85,.9),rgba(5,47,85,.8));
+  --ov-left:linear-gradient(90deg,rgba(10,108,184,.9) 0%,rgba(14,138,200,.55) 55%,rgba(20,170,205,.12) 100%);
+  --ov-flat:linear-gradient(rgba(10,112,188,.66),rgba(10,112,188,.66));
+  --ov-foot:linear-gradient(180deg,rgba(7,70,125,.9),rgba(7,70,125,.82));
 }
 @supports (background-image:image-set(url("a.webp") type("image/webp"))){
 :root{
@@ -45,4 +45,71 @@
   .bg-outreach{background-image:var(--ov-flat),var(--bg-outreach)}
   .bg-mother{background-image:var(--ov-flat),var(--bg-mother)}
   .bg-youth{background-image:var(--ov-flat),var(--bg-youth)}
+}
+
+/* ==========================================================
+   THEME v2: brighter, classic and professional
+   Crimson accent + Playfair Display / Source Sans 3
+   ========================================================== */
+:root{
+  --crimson:#C8102E;--crimson-dark:#9E0B24;--crimson-soft:#FDECEF;
+  --f-head:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-ui:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+  --g-dark:linear-gradient(155deg,#0A62AA 0%,#1088C6 55%,#16B2C9 100%);
+  --g-teal:linear-gradient(135deg,#0F72BD,#12A6C4);
+  --g-crimson:linear-gradient(135deg,#D8183A,#B00D29);
+}
+body{font-size:clamp(1rem,.95rem + .2vw,1.0625rem);background:linear-gradient(180deg,#FFFFFF 0%,#F2F9FD 100%)}
+h1,h2,h3,h4,.statement,.serif,.goal .big,.goal-row .n,.figures b,.stat b{font-variant-numeric:lining-nums}
+h1,h2{font-family:var(--f-head);letter-spacing:-.01em;color:#0A4A7A}
+h1{font-weight:700}h2{font-weight:700}
+h3,h4{font-family:var(--f-ui);font-weight:700;letter-spacing:0}
+.on-dark h1,.on-dark h2,.on-dark h3{color:#fff}
+.serif{font-weight:600;letter-spacing:-.005em}
+/* UI text stays in the clean sans */
+.btn,label,legend,.nav-list a,.nav-list button.dd-btn,.pill,th,.brand,.foot h3,details.enq summary,.adm-nav a,.node,.toast,.panel h3,.theme h3,.card h3{font-family:var(--f-ui)}
+.btn{font-weight:700;font-size:.95rem;letter-spacing:.01em}
+.nav-list a,.nav-list button.dd-btn{font-weight:600;font-size:.95rem}
+/* section accent bar */
+.wrap>h2::after,.split>div>h2::after,.banner h1::after{content:"";display:block;width:46px;height:3px;border-radius:2px;background:var(--crimson);margin-top:.55rem}
+.band h2::after,.sticky h2::after{display:none}
+.on-dark .wrap>h2::after,.on-dark .split>div>h2::after,.banner h1::after{background:#FF4D67}
+/* header: bright white bar with crimson rule */
+.site-header{color:var(--ink)}
+.site-header::before{opacity:1;background:rgba(255,255,255,.97);border-bottom:3px solid var(--crimson);box-shadow:0 10px 28px -20px rgba(5,47,85,.45)}
+.site-header .brand{color:var(--deep)}
+.site-header .brand .chip{background:transparent;box-shadow:none;padding:0}
+.site-header .nav-list a,.site-header .nav-list button.dd-btn{color:var(--deep)}
+.site-header .nav-list a:hover,.site-header .dd-btn:hover{background:rgba(10,106,156,.08);color:var(--crimson)}
+.site-header .nav-list a[aria-current=page]{background:var(--crimson-soft);color:var(--crimson)}
+.site-header .nav-list a.btn,.site-header .nav-list a.btn:hover,.site-header .nav-list a.btn[aria-current=page]{background:var(--g-crimson);color:#fff}
+.site-header .nav-list a.btn:hover{filter:brightness(1.08)}
+.site-header .dd-menu{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.site-header .menu-btn{background:#fff;border:1px solid rgba(10,106,156,.3);color:var(--deep)}
+/* buttons: crimson primary */
+.btn-primary,.on-dark .btn-primary,.on-dark .btn-primary:hover,.btn-primary:hover{background:var(--g-crimson);color:#fff;box-shadow:0 10px 20px -12px rgba(200,16,46,.9)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-solid{background:linear-gradient(135deg,#0F72BD,#12A6C4)}
+/* accents */
+.card::before{background:linear-gradient(90deg,var(--crimson),#FF6B81)}
+.panel.vision{border-left:4px solid var(--crimson)}
+.goal-row .n{background:linear-gradient(135deg,#C8102E,#E8465E);-webkit-background-clip:text;background-clip:text}
+.goal-row:nth-child(3n+2) .n{background:linear-gradient(135deg,#0F72BD,#12A6C4);-webkit-background-clip:text;background-clip:text}
+.goal-row:nth-child(3n) .n{background:linear-gradient(135deg,#C8102E,#E8465E);-webkit-background-clip:text;background-clip:text}
+.theme:nth-child(3n+1) .ico{background:rgba(200,16,46,.1);color:var(--crimson)}
+.theme:nth-child(1) .ico,.theme:nth-child(9) .ico{background:rgba(255,255,255,.2);color:#fff}
+.pill{background:#E1F2FA;color:#0A5A8A}
+.on-sand{background:linear-gradient(180deg,#EAF7FC 0%,#DDF1F8 100%)}
+.site-footer.bg-impact{border-top:4px solid var(--crimson)}
+.foot h3{color:#fff;border-bottom:2px solid var(--crimson);display:inline-block;padding-bottom:.25rem}
+.toast{border-left-color:var(--crimson)}
+a{color:#0A5A9A}a:hover{color:var(--crimson)}
+.on-dark a{color:#fff}.on-dark a:hover{color:#FFD0D7}
+.on-dark .btn-primary,.on-dark a.btn-primary{color:#fff}
+.foot a:hover{color:#FFD0D7}
+@media (max-width:959px){
+  .site-header::before{background:rgba(255,255,255,.98)}
+  .nav{background:#fff;border-left:1px solid var(--line);box-shadow:-30px 0 60px -30px rgba(5,47,85,.5)}
+  .dd-menu{border-left:2px solid var(--crimson)}
 }
