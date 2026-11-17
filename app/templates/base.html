@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 {% set t = self.title()|trim %}{% set d = self.desc()|trim %}
 <title>{{ t ~ ' | ' if t }}{{ c.ORG.short }}</title>
 <meta name="description" content="{{ d }}">
@@ -9,11 +9,11 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="{{ c.ORG.name }}"><meta property="og:title" content="{{ t or c.ORG.name }}"><meta property="og:description" content="{{ d }}"><meta property="og:url" content="{{ canonical }}">
 {% if static_exists('images/hero/hero.jpg') %}<meta property="og:image" content="{{ site_url }}{{ url_for('static', filename='images/hero/hero.jpg') }}">{% endif %}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ t or c.ORG.name }}"><meta name="twitter:description" content="{{ d }}">
-<meta name="theme-color" content="#103E2B">
+<meta name="theme-color" content="#06222C">
 {% block robots %}{% endblock %}
 <link rel="icon" href="{{ url_for('static', filename='images/logo/favicon.png' if static_exists('images/logo/favicon.png') else 'icons/favicon.svg') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
 {% for f in ('main', 'components', 'responsive') %}<link rel="stylesheet" href="{{ url_for('static', filename='css/' ~ f ~ '.css') }}">{% endfor %}
 <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "NGO", "name": c.ORG.name, "alternateName": c.ORG.short, "url": site_url, "telephone": c.ORG.phones[0][0], "email": c.ORG.email, "address": {"@type": "PostalAddress", "streetAddress": "7 State Specialist Hospital Administrative Building", "addressLocality": "Ondo City", "addressRegion": "Ondo State", "addressCountry": "NG"}, "sameAs": c.SOCIAL|map(attribute=1)|list}|tojson }}</script>
 </head>
@@ -23,7 +23,7 @@
 <header class="site-header on-dark">
  <div class="wrap">
   <a class="brand" href="{{ url_for('public.home') }}" aria-label="{{ c.ORG.short }} home">
-   {% if static_exists('images/logo/logo.png') %}<span class="chip"><picture><source media="(max-width:640px)" srcset="{{ url_for('static', filename='images/logo/logo-mobile.png') }}"><img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="{{ c.ORG.short }} logo" height="52"></picture></span>
+   {% if static_exists('images/logo/logo.png') %}<span class="chip"><picture><source media="(max-width:640px)" srcset="{{ url_for('static', filename='images/logo/logo-mobile.png') }}"><img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="{{ c.ORG.short }} logo" height="42"></picture></span>
    {% else %}{{ c.ORG.short }}<small>Participative Care Public Health Initiative</small>{% endif %}
   </a>
   <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Open menu">{{ icon('menu') }}</button>

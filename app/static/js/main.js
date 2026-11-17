@@ -1,11 +1,11 @@
 (() => {
   const d = document, nav = d.getElementById('nav'), btn = d.querySelector('.menu-btn'), hdr = d.querySelector('.site-header');
   d.documentElement.classList.remove('no-js');
-  const solid = () => hdr && hdr.classList.toggle('solid', scrollY > 20 || (nav && nav.classList.contains('open')));
-  const closeAll = () => { nav && nav.classList.remove('open'); btn && btn.setAttribute('aria-expanded', 'false');
+  const solid = () => hdr && hdr.classList.toggle('solid', scrollY > 12 || (nav && nav.classList.contains('open')));
+  const closeAll = () => { nav && nav.classList.remove('open'); d.documentElement.classList.remove('nav-open'); btn && btn.setAttribute('aria-expanded', 'false');
     d.querySelectorAll('.dd.open').forEach(x => { x.classList.remove('open'); x.querySelector('.dd-btn').setAttribute('aria-expanded', 'false'); }); solid(); };
   solid(); addEventListener('scroll', solid, { passive: true });
-  btn && btn.addEventListener('click', () => { const o = nav.classList.toggle('open');
+  btn && btn.addEventListener('click', e => { e.stopPropagation(); const o = nav.classList.toggle('open'); d.documentElement.classList.toggle('nav-open', o);
     btn.setAttribute('aria-expanded', o); btn.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); solid(); });
   d.querySelectorAll('.dd').forEach(dd => { const b = dd.querySelector('.dd-btn');
     b.addEventListener('click', e => { e.stopPropagation(); const o = !dd.classList.contains('open');
