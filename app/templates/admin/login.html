@@ -1,0 +1,3 @@
+{% extends "admin/base.html" %}{% from "_macros.html" import field %}
+{% block title %}Sign in{% endblock %}
+{% block content %}<div class="formcard narrow"><h1>Administrator sign in</h1><form method="post" data-loading novalidate>{{ form.hidden_tag() }}{{ field(form.username) }}{{ field(form.password) }}<button class="btn btn-solid" type="submit">Sign in</button></form></div>{% endblock %}

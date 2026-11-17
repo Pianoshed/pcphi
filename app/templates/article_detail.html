@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% from "_macros.html" import img %}
+{% block title %}{{ a.title }}{% endblock %}{% block desc %}{{ a.excerpt }}{% endblock %}
+{% block main %}
+<section class="banner on-dark"><div class="wrap"><span class="pill">{{ a.category }}</span> {% if a.title.startswith('[SAMPLE]') %}<span class="pill sample">Sample content</span>{% endif %}<h1>{{ a.title }}</h1><p class="lead">{{ a.created_at.strftime('%d %B %Y') }}</p></div></section>
+<section class="section"><div class="wrap narrow-col">{% if a.featured_image %}<div class="hero-img">{{ img(a.featured_image, a.title, eager=True) }}</div>{% endif %}
+ <div class="prose">{{ a.content|paragraphs }}</div>
+ {% if a.programme and a.programme.published %}<p><a href="{{ url_for('public.programme_detail', slug=a.programme.slug) }}">Related programme: {{ a.programme.title }}</a></p>{% endif %}
+ <p><a class="btn btn-ghost" href="{{ url_for('public.resources') }}">Back to resources</a></p></div></section>
+{% endblock %}

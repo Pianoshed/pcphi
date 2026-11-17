@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% from "_cards.html" import news_card %}{% from "_macros.html" import pager %}
+{% block title %}News and resources{% endblock %}{% block desc %}Public health articles, intervention reports, announcements and publications from PCPHI.{% endblock %}
+{% block main %}
+<section class="banner on-dark"><div class="wrap"><h1>News and resources</h1><p class="lead">Articles, reports, announcements, event updates and research publications.</p></div></section>
+<section class="section"><div class="wrap">
+ <form class="filters" method="get" role="search"><label class="hp" for="q">Search</label><input id="q" type="text" name="q" value="{{ s }}" placeholder="Search resources" maxlength="80">
+  <label class="hp" for="category">Category</label><select id="category" name="category"><option value="">All categories</option>{% for x in c.CATEGORIES %}<option {{ 'selected' if x == cat }}>{{ x }}</option>{% endfor %}</select>
+  <button class="btn btn-solid" type="submit">Filter</button></form>
+ {% if p.items %}<div class="cards">{% for a in p.items %}{{ news_card(a) }}{% endfor %}</div>{{ pager(p, 'public.resources', args) }}
+ {% else %}<div class="empty">Nothing has been published here yet.</div>{% endif %}</div></section>
+{% endblock %}

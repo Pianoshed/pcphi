@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Subscribe{% endblock %}{% block desc %}Receive updates about PCPHI's community programmes, public health initiatives, research, events and opportunities to get involved.{% endblock %}
+{% block main %}
+<section class="hero on-dark"><div class="wrap">
+ <div><h1>Stay Connected. Stay Informed. Make an Impact.</h1><p class="lead">Receive updates about PCPHI's community programmes, public health initiatives, research, events and opportunities to get involved.</p></div>
+ <div class="formcard">
+ {% if done is defined and done %}<div role="status"><span class="pill">{{ icon('check', 16) }} Subscribed</span><h2>Thank you for subscribing.</h2><p>Your subscription and consent have been recorded.{% if done.mailed %} A welcome email has been sent to you.{% endif %}</p>
+  <p class="muted">You can unsubscribe at any time using the link in any PCPHI email.</p><a class="btn btn-solid" href="{{ url_for('public.home') }}">Back to home</a></div>
+ {% else %}<h2>Subscribe</h2>{% set idp = 's-' %}{% include "_subscribe_form.html" %}{% endif %}</div>
+</div></section>
+{% endblock %}

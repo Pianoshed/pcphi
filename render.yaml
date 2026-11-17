@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pcphi
+    runtime: python
+    buildCommand: pip install -r requirements-postgres.txt && flask db upgrade
+    startCommand: gunicorn run:app --workers 2 --timeout 60
+    envVars:
+      - {key: APP_ENV, value: production}
+      - {key: PYTHON_VERSION, value: 3.12.8}
+      - {key: SECRET_KEY, generateValue: true}
+      - {key: SITE_URL, sync: false}            # e.g. https://www.yourdomain.org
+      - {key: DATABASE_URL, fromDatabase: {name: pcphi-db, property: connectionString}}
+      - {key: UPLOAD_DIR, value: /var/data/uploads}
+    disk: {name: uploads, mountPath: /var/data, sizeGB: 1}   # persistent images (paid plan); or use external object storage
+databases:
+  - name: pcphi-db
+    plan: free

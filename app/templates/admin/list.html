@@ -1,0 +1,8 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}<h1>{{ title }}</h1><p class="btns">{% if new %}<a class="btn btn-solid" href="{{ new }}">Add new</a>{% endif %}{% if export %}<a class="btn btn-ghost" href="{{ export }}">Export CSV</a>{% endif %}</p>
+{% if rows %}<div class="tbl-wrap"><table><thead><tr>{% for h in headers %}<th scope="col">{{ h }}</th>{% endfor %}<th scope="col">Actions</th></tr></thead><tbody>
+{% for r in rows %}<tr>{% for cell in r.cells %}<td>{{ cell }}</td>{% endfor %}<td>
+{% for label, url, method, confirm, cls in r.actions %}{% if method == 'post' %}<form method="post" action="{{ url }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm {{ cls or 'btn-ghost' }}" type="submit" {% if confirm %}data-confirm="{{ confirm }}"{% endif %}>{{ label }}</button></form>{% else %}<a class="btn btn-sm btn-ghost" href="{{ url }}">{{ label }}</a>{% endif %}{% endfor %}</td></tr>
+{% if r.more %}<tr><td colspan="{{ headers|length + 1 }}"><details><summary>Read message</summary><p class="pre">{{ r.more }}</p></details></td></tr>{% endif %}{% endfor %}</tbody></table></div>
+{% else %}<div class="empty">Nothing here yet.</div>{% endif %}{% endblock %}

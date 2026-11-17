@@ -1,0 +1,4 @@
+{% extends "admin/base.html" %}{% from "_macros.html" import field %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}<h1>{{ title|title }}</h1><div class="formcard narrow"><form method="post" enctype="multipart/form-data" data-loading novalidate>{{ form.hidden_tag() }}
+{% for f in form if f.widget.input_type != 'hidden' %}{{ field(f) }}{% endfor %}<div class="btns"><button class="btn btn-solid" type="submit">Save</button><a class="btn btn-ghost" href="{{ back }}">Cancel</a></div></form></div>{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}About PCPHI{% endblock %}{% block desc %}{{ c.ORG.overview }}{% endblock %}
+{% block main %}
+<section class="banner on-dark"><div class="wrap"><h1>About PCPHI</h1><p class="lead">{{ c.ORG.overview }}</p></div></section>
+<section class="section"><div class="wrap split"><div><h2>Who we are</h2></div><div><p class="lead">{{ c.ORG.founded }}</p><p>{{ c.ORG.work }}</p><p>{{ c.ORG.activities }}</p></div></div></section>
+<section class="section on-sand"><div class="wrap mv"><div class="panel vision"><h3>Vision</h3><p class="serif statement">{{ c.ORG.vision }}</p></div><div class="panel mission"><h3>Mission</h3><p class="lead">{{ c.ORG.mission }}</p></div></div></section>
+<section class="section"><div class="wrap"><h2>Our values</h2><p class="lead">Principles that run through our vision, mission and goals.</p>
+ <div class="roles">{% for t, d in c.VALUES %}<div class="panel"><h3>{{ t }}</h3><p>{{ d }}</p></div>{% endfor %}</div></div></section>
+<section class="section"><div class="wrap"><h2>PCPHI in the field</h2><div class="figs">
+ <figure><img src="{{ url_for('static', filename='images/about/nepwhan-visit.jpg') }}" alt="PCPHI staff and visitors standing together inside the PCPHI office" loading="lazy" width="1020" height="768"><figcaption>NEPWHAN CBO visit and assessment to PCPHI.</figcaption></figure>
+ <figure><img src="{{ url_for('static', filename='images/hero/hero.jpg') }}" alt="PCPHI staff with children at the Children's Day community impact programme" loading="lazy" width="1008" height="756"><figcaption>PCPHI celebrating with the children during the Children's Day celebration.</figcaption></figure></div></div></section>
+<section class="section on-dark"><div class="wrap split"><div><h2>How we involve communities</h2></div><div>
+ <p class="lead">PCPHI uses inclusive and participatory methods. Individuals, families and communities take part in health planning, decision-making and service delivery.</p>
+ <p class="lead">{{ c.ORG.reach }}</p></div></div></section>
+<section class="section"><div class="wrap split"><div><h2>Partnerships and collaboration</h2></div><div><p class="lead">{{ c.ORG.partners }}</p>
+ <div class="btns"><a class="btn btn-solid" href="{{ url_for('public.get_involved') }}">Get involved</a><a class="btn btn-ghost" href="{{ url_for('public.governance') }}">Our governance</a></div></div></div></section>
+{% endblock %}

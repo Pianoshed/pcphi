@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}{% block desc %}PCPHI administration{% endblock %}{% block robots %}<meta name="robots" content="noindex,nofollow">{% endblock %}
+{% block header %}<header class="site-header on-dark solid"><div class="wrap"><a class="brand" href="{{ url_for('admin.dashboard') }}">PCPHI Admin</a>
+<nav aria-label="Admin"><ul class="nav-list"><li><a href="{{ url_for('public.home') }}">View site</a></li>
+{% if current_user.is_authenticated %}<li><form method="post" action="{{ url_for('admin.logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-ghost" type="submit">Sign out</button></form></li>{% endif %}</ul></nav></div></header>{% endblock %}
+{% block footer %}{% endblock %}
+{% block main %}<section class="adm"><div class="wrap">
+{% if current_user.is_authenticated %}<nav class="adm-nav" aria-label="Sections">
+{% for label, ep, kw, admin in [('Dashboard','admin.dashboard',{},0),('Programmes','admin.items',{'kind':'programmes'},0),('Articles','admin.items',{'kind':'articles'},0),('Messages','admin.messages',{},1),('Subscribers','admin.subscribers',{},1)] %}
+{% if not admin or current_user.role == 'admin' %}<a href="{{ url_for(ep, **kw) }}" {{ 'aria-current=page' if request.path == url_for(ep, **kw) }}>{{ label }}</a>{% endif %}{% endfor %}</nav>{% endif %}
+{% block content %}{% endblock %}</div></section>{% endblock %}

@@ -1,0 +1,4 @@
+{% from "_macros.html" import field, hp %}
+<form method="post" action="{{ url_for('public.subscribe') }}" data-loading novalidate>{{ form.hidden_tag() }}{{ hp() }}
+{{ field(form.full_name, idp=idp) }}{{ field(form.email, idp=idp) }}{{ field(form.interests, idp=idp) }}{{ field(form.consent, idp=idp) }}
+<button class="btn btn-solid" type="submit">Subscribe</button></form>

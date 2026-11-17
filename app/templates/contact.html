@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% from "_macros.html" import field, hp %}
+{% block title %}Contact{% endblock %}{% block desc %}Contact PCPHI by phone, WhatsApp or enquiry form.{% endblock %}
+{% block main %}
+<section class="banner on-dark"><div class="wrap"><h1>Contact us</h1><p class="lead">Call, message on WhatsApp or send an enquiry.</p></div></section>
+<section class="section"><div class="wrap split"><div>
+ <ul class="contact-list">
+ {% for disp, wa in c.ORG.phones %}<li>{{ icon('phone') }}<span><a href="tel:+{{ wa }}">{{ disp }}</a><br><a href="https://wa.me/{{ wa }}" rel="noopener" target="_blank">{{ icon('chat', 16) }} WhatsApp this number<span class="sr"> (opens in a new tab)</span></a></span></li>{% endfor %}
+ <li>{{ icon('pin') }}<span>{{ c.ORG.address }}</span></li>
+ <li>{{ icon('mail') }}<span><a href="mailto:{{ c.ORG.email }}">{{ c.ORG.email }}</a></span></li>
+ <li>{{ icon('link') }}<span><a href="{{ c.ORG.website }}" rel="noopener">participativecare.org.ng</a></span></li>
+ <li>{{ icon('users') }}<span>{% for n, u in c.SOCIAL %}<a href="{{ u }}" rel="noopener" target="_blank">{{ n }}<span class="sr"> (opens in a new tab)</span></a>{{ ', ' if not loop.last }}{% endfor %}</span></li></ul></div>
+ <div class="formcard"><h2>Send an enquiry</h2>
+ <form method="post" data-loading novalidate>{{ form.hidden_tag() }}{{ hp() }}{{ field(form.name) }}{{ field(form.email) }}{{ field(form.subject) }}{{ field(form.message) }}<button class="btn btn-solid" type="submit">Send message</button></form></div></div></section>
+{% endblock %}

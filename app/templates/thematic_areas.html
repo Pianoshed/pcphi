@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Thematic areas{% endblock %}{% block desc %}The nine thematic areas of PCPHI's work.{% endblock %}
+{% block main %}
+<section class="banner on-dark"><div class="wrap"><h1>Nine thematic areas</h1><p class="lead">Where PCPHI focuses its programmes, advocacy and research.</p></div></section>
+<section class="section"><div class="wrap">{% with cls='' %}{% include "_themes.html" %}{% endwith %}
+ <p class="meta">Looking for related work? <a href="{{ url_for('public.programmes') }}">Browse programmes by thematic area</a>.</p></div></section>
+{% endblock %}

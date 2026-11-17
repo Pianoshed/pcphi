@@ -1,0 +1,3 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}<h1>Dashboard</h1><div class="stats">{% for l, n in stats %}<div class="stat"><b>{{ n }}</b>{{ l }}</div>{% endfor %}</div>{% endblock %}

@@ -1,0 +1,14 @@
+{% macro field(f, idp='', hint='') %}{% set fid = idp ~ f.id %}
+<div class="field{% if f.errors %} has-error{% endif %}">
+{% if f.type == 'BooleanField' %}<label class="check">{{ f(id=fid, **{'aria-describedby': fid ~ '-e'}) }}<span>{{ f.label.text }}</span></label>
+{% elif f.type == 'SelectMultipleField' %}<fieldset><legend>{{ f.label.text }} <small>(optional)</small></legend><div class="checks">{% for v, l in f.choices %}<label class="check"><input type="checkbox" name="{{ f.name }}" value="{{ v }}" {{ 'checked' if v in (f.data or []) }}><span>{{ l }}</span></label>{% endfor %}</div></fieldset>
+{% else %}<label for="{{ fid }}">{{ f.label.text }}{% if not f.flags.required %} <small>(optional)</small>{% endif %}</label>{{ f(id=fid, **{'aria-describedby': fid ~ '-e', 'aria-invalid': 'true' if f.errors else 'false'}) }}{% endif %}
+{% if hint %}<p class="hint">{{ hint }}</p>{% endif %}<p class="err" id="{{ fid }}-e" role="alert">{{ f.errors|join(' ') }}</p></div>{% endmacro %}
+
+{% macro hp() %}<div class="hp" aria-hidden="true"><label>Leave blank<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>{% endmacro %}
+
+{% macro img(file, alt, cls='', eager=False) %}{% if file %}<img class="{{ cls }}" src="{{ url_for('public.media', name=file) }}" alt="{{ alt }}" {{ 'fetchpriority=high' if eager else 'loading=lazy' }} decoding="async">{% endif %}{% endmacro %}
+
+{% macro pager(p, endpoint, args) %}{% if p.pages > 1 %}<nav class="pager" aria-label="Pagination">{% if p.has_prev %}<a class="btn btn-ghost btn-sm" href="{{ url_for(endpoint, page=p.prev_num, **args) }}">Previous</a>{% endif %}<span>Page {{ p.page }} of {{ p.pages }}</span>{% if p.has_next %}<a class="btn btn-ghost btn-sm" href="{{ url_for(endpoint, page=p.next_num, **args) }}">Next</a>{% endif %}</nav>{% endif %}{% endmacro %}
+
+{% macro dates(p) %}{% if p.start_date %}{{ p.start_date.strftime('%d %b %Y') }}{% if p.end_date %} to {{ p.end_date.strftime('%d %b %Y') }}{% endif %}{% endif %}{% endmacro %}
