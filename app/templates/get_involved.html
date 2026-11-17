@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_macros.html" import field, hp %}
 {% block title %}Get involved{% endblock %}{% block desc %}Volunteer, partner, support or collaborate with PCPHI.{% endblock %}
 {% block main %}
-<section class="banner on-dark"><div class="wrap"><h1>Get involved</h1><p class="lead">Four ways to work with PCPHI. Send an enquiry and we will respond by email.</p></div></section>
+<section class="banner on-dark bg-youth"><div class="wrap"><h1>Get involved</h1><p class="lead">Four ways to work with PCPHI. Send an enquiry and we will respond by email.</p></div></section>
 <section class="section"><div class="wrap">
 {% for k, (title, text, ic) in c.PATHWAYS.items() %}{% set f = forms[k] %}
 <div class="pathway" id="{{ k }}"><div>{{ icon(ic, 32) }}<h2>{{ title }}</h2><p class="lead">{{ text }}</p></div>

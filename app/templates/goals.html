@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Our goals{% endblock %}{% block desc %}The six organisational goals of PCPHI.{% endblock %}
 {% block main %}
-<section class="banner on-dark"><div class="wrap"><h1>Our six goals</h1><p class="lead">The outcomes PCPHI works toward with communities, partners and institutions.</p></div></section>
+<section class="banner on-dark bg-network"><div class="wrap"><h1>Our six goals</h1><p class="lead">The outcomes PCPHI works toward with communities, partners and institutions.</p></div></section>
 <section class="section"><div class="wrap goals">{% for t, d, ic in c.GOALS %}<article class="goal g{{ loop.index }}" data-reveal><span class="big" aria-hidden="true">{{ loop.index }}</span><div>{{ icon(ic, 34) }}<h2><span class="sr">Goal {{ loop.index }}: </span>{{ t }}</h2><p>{{ d }}</p></div></article>{% endfor %}</div></section>
 {% endblock %}

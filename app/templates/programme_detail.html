@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_macros.html" import img, dates %}{% from "_cards.html" import news_card %}
 {% block title %}{{ p.title }}{% endblock %}{% block desc %}{{ p.description[:155] }}{% endblock %}
 {% block main %}
-<section class="banner on-dark"><div class="wrap"><span class="pill {{ p.status }}">{{ p.status }}</span> {% if p.title.startswith('[SAMPLE]') %}<span class="pill sample">Sample content</span>{% endif %}<h1>{{ p.title }}</h1><p class="lead">{{ p.thematic_area }}</p></div></section>
+<section class="banner on-dark bg-outreach"><div class="wrap"><span class="pill {{ p.status }}">{{ p.status }}</span> {% if p.title.startswith('[SAMPLE]') %}<span class="pill sample">Sample content</span>{% endif %}<h1>{{ p.title }}</h1><p class="lead">{{ p.thematic_area }}</p></div></section>
 <section class="section"><div class="wrap split"><div class="sticky"><div class="glass-card"><h3>Details</h3>
  <p class="meta">Thematic area<br><b>{{ p.thematic_area }}</b></p>{% if p.start_date %}<p class="meta">Dates<br><b>{{ dates(p) }}</b></p>{% endif %}{% if p.location %}<p class="meta">Location<br><b>{{ p.location }}</b></p>{% endif %}
  <a class="btn btn-ghost" href="{{ url_for('public.programmes') }}">All programmes</a></div></div>

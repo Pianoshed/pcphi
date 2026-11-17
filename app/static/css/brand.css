@@ -1,0 +1,48 @@
+/* ==========================================================
+   PCPHI brand visuals: photographic + abstract backgrounds
+   Load AFTER main/components/responsive.css.
+   Each class paints a dark/teal overlay over a brand image so
+   white text stays readable. WebP first, JPG fallback.
+   ========================================================== */
+:root{
+  --bg-network:url("../images/backgrounds/01-abstract-community-network.jpg");
+  --bg-outreach:url("../images/backgrounds/02-community-health-outreach.jpg");
+  --bg-mother:url("../images/backgrounds/03-mother-and-child.jpg");
+  --bg-youth:url("../images/backgrounds/04-youth-community-dialogue.jpg");
+  --bg-impact:url("../images/backgrounds/05-public-health-impact-footer.jpg");
+  --ov-left:linear-gradient(90deg,rgba(5,47,85,.93) 0%,rgba(5,47,85,.62) 55%,rgba(5,47,85,.34) 100%);
+  --ov-flat:linear-gradient(rgba(5,47,85,.78),rgba(5,47,85,.78));
+  --ov-foot:linear-gradient(180deg,rgba(5,47,85,.9),rgba(5,47,85,.8));
+}
+@supports (background-image:image-set(url("a.webp") type("image/webp"))){
+:root{
+  --bg-network:image-set(url("../images/backgrounds/01-abstract-community-network.webp") type("image/webp"),url("../images/backgrounds/01-abstract-community-network.jpg") type("image/jpeg"));
+  --bg-outreach:image-set(url("../images/backgrounds/02-community-health-outreach.webp") type("image/webp"),url("../images/backgrounds/02-community-health-outreach.jpg") type("image/jpeg"));
+  --bg-mother:image-set(url("../images/backgrounds/03-mother-and-child.webp") type("image/webp"),url("../images/backgrounds/03-mother-and-child.jpg") type("image/jpeg"));
+  --bg-youth:image-set(url("../images/backgrounds/04-youth-community-dialogue.webp") type("image/webp"),url("../images/backgrounds/04-youth-community-dialogue.jpg") type("image/jpeg"));
+  --bg-impact:image-set(url("../images/backgrounds/05-public-health-impact-footer.webp") type("image/webp"),url("../images/backgrounds/05-public-health-impact-footer.jpg") type("image/jpeg"));
+}}
+/* base for any section using a brand background */
+.bg-network,.bg-outreach,.bg-mother,.bg-youth,.bg-impact{background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#05396A}
+/* hero + page banners (text on the left, photo/network shows right) */
+.bg-network{background-image:var(--ov-left),var(--bg-network)}
+.bg-outreach{background-image:var(--ov-left),var(--bg-outreach);background-position:center,center 30%}
+.bg-mother{background-image:var(--ov-left),var(--bg-mother);background-position:center,70% 35%}
+.bg-youth{background-image:var(--ov-left),var(--bg-youth);background-position:center,center 40%}
+/* evidence / impact + footer backdrops (already wide, abstract) */
+.bg-impact{background-image:var(--ov-flat),var(--bg-impact)}
+.site-footer.bg-impact{background-image:var(--ov-foot),var(--bg-impact);background-position:center,center bottom}
+/* the two photo banners need a bit more height so the image reads */
+.banner.bg-outreach,.banner.bg-mother,.banner.bg-youth{padding-bottom:3.25rem}
+/* mosaic figure */
+.mosaic{margin:0}
+.mosaic img{width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;border-radius:var(--r);box-shadow:var(--shadow)}
+.mosaic figcaption{margin-top:.7rem;color:var(--muted);font-size:.85rem}
+/* standalone SVG icons from /static/icons (colour via CSS mask) */
+.ico-mask{display:inline-block;width:1.5rem;height:1.5rem;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+@media (max-width:959px){
+  .bg-network,.bg-outreach,.bg-mother,.bg-youth{background-image:var(--ov-flat),var(--bg-network)}
+  .bg-outreach{background-image:var(--ov-flat),var(--bg-outreach)}
+  .bg-mother{background-image:var(--ov-flat),var(--bg-mother)}
+  .bg-youth{background-image:var(--ov-flat),var(--bg-youth)}
+}

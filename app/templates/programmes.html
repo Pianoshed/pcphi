@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_cards.html" import prog_card %}{% from "_macros.html" import pager %}
 {% block title %}Programmes{% endblock %}{% block desc %}Browse PCPHI programmes by thematic area and status.{% endblock %}
 {% block main %}
-<section class="banner on-dark"><div class="wrap"><h1>Programmes and impact</h1><p class="lead">Community interventions organised by thematic area and status.</p></div></section>
+<section class="banner on-dark bg-outreach"><div class="wrap"><h1>Programmes and impact</h1><p class="lead">Community interventions organised by thematic area and status.</p></div></section>
 <section class="section"><div class="wrap">
  <form class="filters" method="get" role="search"><label class="hp" for="q">Search</label><input id="q" type="text" name="q" value="{{ s }}" placeholder="Search programmes" maxlength="80">
   <label class="hp" for="area">Thematic area</label><select id="area" name="area"><option value="">All thematic areas</option>{% for t in c.THEMES %}<option {{ 'selected' if t[0] == area }}>{{ t[0] }}</option>{% endfor %}</select>

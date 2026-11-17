@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Unsubscribe{% endblock %}{% block desc %}Manage your PCPHI subscription.{% endblock %}{% block robots %}<meta name="robots" content="noindex">{% endblock %}
 {% block main %}
-<section class="banner on-dark"><div class="wrap"><h1>Unsubscribe</h1></div></section>
+<section class="banner on-dark bg-network"><div class="wrap"><h1>Unsubscribe</h1></div></section>
 <section class="section"><div class="narrow-col formcard">
 {% if sub.is_active %}<p class="lead">Do you want to stop receiving PCPHI updates?</p>
  <form method="post" data-loading><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-danger" type="submit">Yes, unsubscribe me</button> <a class="btn btn-ghost" href="{{ url_for('public.home') }}">Keep me subscribed</a></form>
