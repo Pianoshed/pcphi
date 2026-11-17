@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_cards.html" import prog_card %}{% from "_macros.html" import pager %}
+{% extends "base.html" %}{% from "_cards.html" import prog_card, feat_card %}{% from "_macros.html" import pager %}
 {% block title %}Programmes{% endblock %}{% block desc %}Browse PCPHI programmes by thematic area and status.{% endblock %}
 {% block main %}
 <section class="banner on-dark bg-outreach"><div class="wrap"><h1>Programmes and impact</h1><p class="lead">Community interventions organised by thematic area and status.</p></div></section>
@@ -8,5 +8,5 @@
   <label class="hp" for="status">Status</label><select id="status" name="status"><option value="">Any status</option>{% for x in c.STATUSES %}<option {{ 'selected' if x == status }}>{{ x }}</option>{% endfor %}</select>
   <button class="btn btn-solid" type="submit">Filter</button></form>
  {% if p.items %}<div class="cards">{% for x in p.items %}{{ prog_card(x) }}{% endfor %}</div>{{ pager(p, 'public.programmes', args) }}
- {% else %}<div class="empty">No programmes match your search yet.</div>{% endif %}</div></section>
+ {% else %}{% set ns = namespace(n=0) %}<div class="cards">{% for x in c.FEATURED if not status and (not area or x.area == area) and (not s or s|lower in (x.title ~ ' ' ~ x.blurb)|lower) %}{% set ns.n = ns.n + 1 %}{{ feat_card(x) }}{% endfor %}</div>{% if not ns.n %}<div class="empty">No programmes match your filters.</div>{% endif %}{% endif %}</div></section>
 {% endblock %}

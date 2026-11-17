@@ -113,3 +113,60 @@ a{color:#0A5A9A}a:hover{color:var(--crimson)}
   .nav{background:#fff;border-left:1px solid var(--line);box-shadow:-30px 0 60px -30px rgba(5,47,85,.5)}
   .dd-menu{border-left:2px solid var(--crimson)}
 }
+
+/* ==========================================================
+   Scenes (cropped mosaic photos), focus lists, type tuning
+   ========================================================== */
+.photo{margin:1.4rem 0 0}
+.photo img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:center 30%;border-radius:var(--r);box-shadow:var(--shadow)}
+.photo-tall img{aspect-ratio:6/5}
+.photo-glass img{box-shadow:0 0 0 5px rgba(255,255,255,.14),0 26px 50px -28px rgba(0,0,0,.65);border-radius:20px 20px 64px 20px}
+.impact{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.5rem,5vw,3.5rem);align-items:center}
+.impact .figures{grid-template-columns:repeat(2,1fr);gap:1.6rem 1.5rem;margin-top:1.4rem}
+.impact .photo{margin:0}
+.nl .photo{max-width:420px}
+.band{padding-block:.5rem}
+.band h2{color:#fff}
+.focus{list-style:none;margin:.9rem 0 0;padding:.8rem 0 0;border-top:1px solid var(--line);display:grid;gap:.45rem}
+.focus li{position:relative;padding-left:1.15rem;font-size:.95rem;line-height:1.45}
+.focus li::before{content:"";position:absolute;left:0;top:.55em;width:.5rem;height:.5rem;border-radius:50%;background:var(--crimson)}
+.theme:nth-child(1) .focus,.theme:nth-child(9) .focus{border-color:rgba(255,255,255,.25)}
+.theme:nth-child(1) .focus li::before,.theme:nth-child(9) .focus li::before{background:#fff}
+.themes:not(.compact) .theme{display:flex;flex-direction:column}
+.themes:not(.compact) .theme h3{font-size:1.15rem}
+/* type tuning for Source Sans 3 / Playfair Display */
+.lead{font-size:clamp(1.05rem,1.1vw + .55rem,1.2rem);line-height:1.65}
+.statement{font-size:clamp(1.3rem,2.2vw,1.75rem);line-height:1.4}
+h1{font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.12}
+h2{font-size:clamp(1.55rem,2.8vw,2.25rem);line-height:1.2}
+h3{font-size:clamp(1.08rem,1.3vw,1.22rem);line-height:1.3}
+.banner h1{font-size:clamp(1.9rem,4vw,2.9rem);max-width:24ch}
+.theme p,.card p,.goal-row p,.panel p{font-size:1rem;line-height:1.55}
+.themes.compact .theme p{font-size:.95rem}
+.meta{font-size:.92rem}.small{font-size:.9rem}.pill{font-size:.78rem}
+.figures b{font-family:var(--f-head);font-size:clamp(2.2rem,4.2vw,3.2rem)}
+.foot h3{font-size:.85rem}.foot a,.foot p,.foot li{font-size:.98rem}
+.legal{font-size:.88rem}
+.node{font-size:.92rem;font-family:var(--f-ui)}
+.goal-row .n,.goal .big{font-family:var(--f-head)}
+.card h3{font-size:1.1rem}
+@media (max-width:959px){.impact{grid-template-columns:1fr}.impact .photo{max-width:520px}.nl .photo{max-width:none}}
+@media (max-width:640px){.impact .figures{gap:1.2rem 1rem}.photo-tall img{aspect-ratio:16/10}}
+.panel .statement{font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.4}
+.themes.compact .theme p{display:block}
+.pill{max-width:100%;line-height:1.3}
+.tree-scroll{padding:1.5rem 0 2.5rem}
+.node{font-size:1rem;line-height:1.3;padding:.8rem 1rem}
+.node.top{font-size:1.1rem}.node.lead{font-size:1.05rem}.node.unit{font-weight:700}
+@media (min-width:960px){.node{min-width:170px;max-width:220px;padding:.85rem 1.1rem}.node.top{padding:1rem 1.6rem}.node.lead{padding:.95rem 1.4rem}}
+@media (max-width:959px){.node{min-width:0;max-width:100%}}
+.filters select,.filters input{min-width:0;max-width:100%}
+@media (max-width:640px){.filters select,.filters input,.filters .btn{flex:1 1 100%;width:100%}}
+@media (max-width:959px){
+.tree-scroll{overflow-x:auto}
+.tree ul{padding-left:.7rem;margin-left:.35rem}
+.tree li,.tree li:only-child{padding-left:.95rem}
+.tree li::before,.tree li:last-child::before,.tree li:first-child::before{width:.95rem}
+.node{font-size:.92rem;padding:.6rem .8rem;display:inline-block;min-width:0;max-width:100%}
+.node.top{font-size:1rem}
+}

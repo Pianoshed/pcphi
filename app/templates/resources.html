@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_cards.html" import news_card %}{% from "_macros.html" import pager %}
+{% extends "base.html" %}{% from "_cards.html" import news_card, feat_news %}{% from "_macros.html" import pager %}
 {% block title %}News and resources{% endblock %}{% block desc %}Public health articles, intervention reports, announcements and publications from PCPHI.{% endblock %}
 {% block main %}
 <section class="banner on-dark bg-network"><div class="wrap"><h1>News and resources</h1><p class="lead">Articles, reports, announcements, event updates and research publications.</p></div></section>
@@ -7,5 +7,5 @@
   <label class="hp" for="category">Category</label><select id="category" name="category"><option value="">All categories</option>{% for x in c.CATEGORIES %}<option {{ 'selected' if x == cat }}>{{ x }}</option>{% endfor %}</select>
   <button class="btn btn-solid" type="submit">Filter</button></form>
  {% if p.items %}<div class="cards">{% for a in p.items %}{{ news_card(a) }}{% endfor %}</div>{{ pager(p, 'public.resources', args) }}
- {% else %}<div class="empty">Nothing has been published here yet.</div>{% endif %}</div></section>
+ {% else %}{% set ns = namespace(n=0) %}<div class="cards">{% for x in c.NEWS_FALLBACK if (not cat or x.category == cat) and (not s or s|lower in (x.title ~ ' ' ~ x.excerpt)|lower) %}{% set ns.n = ns.n + 1 %}{{ feat_news(x) }}{% endfor %}</div>{% if not ns.n %}<div class="empty">No resources match your filters.</div>{% endif %}{% endif %}</div></section>
 {% endblock %}

@@ -1,1 +1,1 @@
-<div class="themes {{ cls }}" data-reveal>{% for t, d, ic in c.THEMES %}<article class="theme">{{ icon(ic, 28) }}<h3>{{ t }}</h3><p>{{ d }}</p></article>{% endfor %}</div>
+<div class="themes {{ cls }}" data-reveal>{% for t, d, ic in c.THEMES %}<article class="theme" id="theme-{{ loop.index }}">{{ icon(ic, 28) }}<h3>{{ t }}</h3><p>{{ d }}</p>{% if not cls %}<ul class="focus">{% for pt in c.THEME_FOCUS.get(t, []) %}<li>{{ pt }}</li>{% endfor %}</ul>{% endif %}</article>{% endfor %}</div>

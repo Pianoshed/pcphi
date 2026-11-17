@@ -12,3 +12,5 @@
 {% macro pager(p, endpoint, args) %}{% if p.pages > 1 %}<nav class="pager" aria-label="Pagination">{% if p.has_prev %}<a class="btn btn-ghost btn-sm" href="{{ url_for(endpoint, page=p.prev_num, **args) }}">Previous</a>{% endif %}<span>Page {{ p.page }} of {{ p.pages }}</span>{% if p.has_next %}<a class="btn btn-ghost btn-sm" href="{{ url_for(endpoint, page=p.next_num, **args) }}">Next</a>{% endif %}</nav>{% endif %}{% endmacro %}
 
 {% macro dates(p) %}{% if p.start_date %}{{ p.start_date.strftime('%d %b %Y') }}{% if p.end_date %} to {{ p.end_date.strftime('%d %b %Y') }}{% endif %}{% endif %}{% endmacro %}
+
+{% macro scene(name, alt, cls='photo') %}<figure class="{{ cls }}"><picture><source type="image/webp" srcset="{{ url_for('static', filename='images/scenes/' ~ name ~ '.webp') }}"><img src="{{ url_for('static', filename='images/scenes/' ~ name ~ '.jpg') }}" alt="{{ alt }}" loading="lazy" decoding="async"></picture></figure>{% endmacro %}

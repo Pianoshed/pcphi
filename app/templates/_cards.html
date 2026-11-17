@@ -5,3 +5,10 @@
 {% macro news_card(a) %}<article class="card"><div class="thumb">{% if a.featured_image %}{{ img(a.featured_image, '') }}{% else %}{{ icon('book', 44) }}{% endif %}</div><div class="body">
 <span class="pill">{{ a.category }}</span>{% if a.title.startswith('[SAMPLE]') %}<span class="pill sample">Sample content</span>{% endif %}
 <h3><a href="{{ url_for('public.article_detail', slug=a.slug) }}">{{ a.title }}</a></h3><p>{{ a.excerpt }}</p><p class="meta">{{ a.created_at.strftime('%d %b %Y') }}</p></div></article>{% endmacro %}
+
+{% macro feat_card(x) %}<article class="card"><div class="thumb"><img src="{{ url_for('static', filename=x.img) }}" alt="" loading="lazy" decoding="async"></div><div class="body">
+<span class="pill">{{ x.area }}</span>
+<h3><a href="{{ url_for('public.themes', _anchor=x.anchor) }}">{{ x.title }}</a></h3><p>{{ x.blurb }}</p></div></article>{% endmacro %}
+{% macro feat_news(x) %}<article class="card"><div class="thumb"><img src="{{ url_for('static', filename=x.img) }}" alt="" loading="lazy" decoding="async"></div><div class="body">
+<span class="pill">{{ x.category }}</span>
+<h3><a href="{{ url_for(x.endpoint, _anchor=x.anchor) if x.anchor else url_for(x.endpoint) }}">{{ x.title }}</a></h3><p>{{ x.excerpt }}</p></div></article>{% endmacro %}

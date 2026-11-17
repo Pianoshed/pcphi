@@ -49,7 +49,36 @@ CATEGORIES = ["Public health articles", "Community sensitisation", "Intervention
 SOCIAL = [("Facebook", "https://www.facebook.com/participativecare"), ("YouTube", "https://www.youtube.com/@participativecare"),
           ("X", "https://x.com/participativecare"), ("LinkedIn", "https://www.linkedin.com/company/participativecare")]
 STATUSES = ["Upcoming", "Ongoing", "Completed"]
-IMPACT = []  # add verified figures later, e.g. [("1,200", "people reached in 2025")] — nothing is shown until you do
+IMPACT = []  # optional: add verified figures, e.g. [("1,200", "people reached in 2025")]; when empty the home page shows "at a glance" facts from this file
+THEME_FOCUS = {
+    "Women empowerment and development": ["Encouraging women's voices in community health planning", "Awareness and skills-building sessions", "Linking women to health and support services"],
+    "Preventive healthcare services": ["Community screening activities", "Prevention education for individuals and families", "Referral to care where it is needed"],
+    "Maternal health and reproductive counselling services": ["Maternal health education for women and families", "Reproductive counselling for women and couples", "Linking mothers to antenatal and child health services"],
+    "Public health intervention programmes": ["Community-based programmes designed with residents", "Delivery alongside government and civil society partners", "Reaching underserved and hard-to-reach communities"],
+    "Community engagement and health education": ["Health talks and sensitisation sessions", "Clear, evidence-based information materials", "Community dialogues involving local leaders"],
+    "Adolescent health and youth healthcare": ["Youth-friendly health information", "Peer education and open dialogue", "Linking young people to appropriate care"],
+    "GHR advocacy and sensitisation": ["Advocacy with partners and institutions", "Community sensitisation sessions", "Reducing stigma and discrimination"],
+    "Child welfare and protection": ["Child protection awareness in communities", "Support for children's health and wellbeing", "Community outreach such as Children's Day celebrations"],
+    "Research and survey activities": ["Surveys and community assessments", "Evidence that guides programme design", "Sharing findings with partners"],
+}
+# Featured work shown on the home and programmes pages (image paths are inside /static)
+FEATURED = [
+    {"title": "Community health education and sensitisation", "area": "Community engagement and health education", "anchor": "theme-5", "img": "images/backgrounds/02-community-health-outreach.jpg",
+     "blurb": "Health talks, sensitisation sessions and information sharing that bring accurate health knowledge into everyday community life."},
+    {"title": "Maternal health and reproductive counselling", "area": "Maternal health and reproductive counselling services", "anchor": "theme-3", "img": "images/backgrounds/03-mother-and-child.jpg",
+     "blurb": "Support and counselling that help mothers, couples and families make informed decisions about their health."},
+    {"title": "Adolescent and youth health engagement", "area": "Adolescent health and youth healthcare", "anchor": "theme-6", "img": "images/backgrounds/04-youth-community-dialogue.jpg",
+     "blurb": "Open, youth-friendly conversations and information that meet the health needs of adolescents and young people."},
+]
+# News and updates shown when no articles have been published in the admin
+NEWS_FALLBACK = [
+    {"title": "Children's Day celebration", "category": "Event updates", "img": "images/hero/hero.jpg", "endpoint": "public.about", "anchor": "field",
+     "excerpt": "PCPHI staff celebrated with children during the Children's Day community impact programme."},
+    {"title": "NEPWHAN CBO visit and assessment", "category": "Organisational announcements", "img": "images/about/nepwhan-visit.jpg", "endpoint": "public.about", "anchor": "field",
+     "excerpt": "NEPWHAN CBO visited the PCPHI office for an assessment, hosted by PCPHI staff."},
+    {"title": "Stay connected with PCPHI", "category": "Get involved", "img": "images/backgrounds/01-abstract-community-network.jpg", "endpoint": "public.subscribe", "anchor": None,
+     "excerpt": "Subscribe for updates on community programmes, public health initiatives, research and events."},
+]
 NAV = [("About", [("About PCPHI", "public.about"), ("Our goals", "public.goals"), ("Thematic areas", "public.themes"), ("Governance", "public.governance")]),
        ("Programmes", "public.programmes"), ("Resources", "public.resources"), ("Get involved", "public.get_involved"), ("Contact", "public.contact")]
 
