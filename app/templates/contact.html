@@ -1,8 +1,9 @@
-{% extends "base.html" %}{% from "_macros.html" import field, hp %}
+{% extends "base.html" %}{% from "_macros.html" import field, hp, ceo_card %}
 {% block title %}Contact{% endblock %}{% block desc %}Contact PCPHI by phone, WhatsApp or enquiry form.{% endblock %}
 {% block main %}
 <section class="banner on-dark bg-network"><div class="wrap"><h1>Contact us</h1><p class="lead">Call, message on WhatsApp or send an enquiry.</p></div></section>
 <section class="section"><div class="wrap split"><div>
+ {{ ceo_card(c.ORG.ceo) }}
  <ul class="contact-list">
  {% for disp, wa in c.ORG.phones %}<li>{{ icon('phone') }}<span><a href="tel:+{{ wa }}">{{ disp }}</a><br><a href="https://wa.me/{{ wa }}" rel="noopener" target="_blank">{{ icon('chat', 16) }} WhatsApp this number<span class="sr"> (opens in a new tab)</span></a></span></li>{% endfor %}
  <li>{{ icon('pin') }}<span>{{ c.ORG.address }}</span></li>

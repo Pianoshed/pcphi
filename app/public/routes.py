@@ -126,13 +126,14 @@ def media(name):
 @bp.get("/sitemap.xml")
 def sitemap():
     base = current_app.config["SITE_URL"] or request.url_root.rstrip("/")
-    pages = [(url_for(e), None) for e in ("public.home", "public.about", "public.goals", "public.themes", "public.governance", "public.programmes", "public.resources", "public.get_involved", "public.subscribe", "public.contact")]
-    pages += [(url_for(".programme_detail", slug=p.slug), p.updated_at) for p in Programme.query.filter_by(published=True)]
-    pages += [(url_for(".article_detail", slug=a.slug), a.updated_at) for a in Article.query.filter_by(published=True)]
-    xml = "".join(f"<url><loc>{base}{u}</loc>{f'<lastmod>{d:%Y-%m-%d}</lastmod>' if d else ''}</url>" for u, d in pages)
-    return Response(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{xml}</urlset>', mimetype="application/xml")
+    top = {"public.home": ("1.0", "weekly"), "public.about": ("0.8", "monthly"), "public.programmes": ("0.9", "weekly"), "public.resources": ("0.8", "weekly")}
+    pages = [(url_for(e), None, *top.get(e, ("0.6", "monthly"))) for e in ("public.home", "public.about", "public.goals", "public.themes", "public.governance", "public.programmes", "public.resources", "public.get_involved", "public.subscribe", "public.contact")]
+    pages += [(url_for(".programme_detail", slug=p.slug), p.updated_at, "0.7", "monthly") for p in Programme.query.filter_by(published=True)]
+    pages += [(url_for(".article_detail", slug=a.slug), a.updated_at, "0.7", "monthly") for a in Article.query.filter_by(published=True)]
+    xml = "".join(f"<url><loc>{base}{u}</loc>{f'<lastmod>{d:%Y-%m-%d}</lastmod>' if d else ''}<changefreq>{cf}</changefreq><priority>{pr}</priority></url>" for u, d, pr, cf in pages)
+    return Response(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{xml}</urlset>', mimetype="application/xml")
 
 @bp.get("/robots.txt")
 def robots():
     base = current_app.config["SITE_URL"] or request.url_root.rstrip("/")
-    return Response(f"User-agent: *\nDisallow: /admin/\nDisallow: /unsubscribe/\nSitemap: {base}/sitemap.xml\n", mimetype="text/plain")
+    return Response(f"User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /unsubscribe/\nSitemap: {base}/sitemap.xml\n", mimetype="text/plain")

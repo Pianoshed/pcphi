@@ -14,3 +14,8 @@
 {% macro dates(p) %}{% if p.start_date %}{{ p.start_date.strftime('%d %b %Y') }}{% if p.end_date %} to {{ p.end_date.strftime('%d %b %Y') }}{% endif %}{% endif %}{% endmacro %}
 
 {% macro scene(name, alt, cls='photo') %}<figure class="{{ cls }}"><picture><source type="image/webp" srcset="{{ url_for('static', filename='images/scenes/' ~ name ~ '.webp') }}"><img src="{{ url_for('static', filename='images/scenes/' ~ name ~ '.jpg') }}" alt="{{ alt }}" loading="lazy" decoding="async"></picture></figure>{% endmacro %}
+
+{% macro ceo_card(o) %}<div class="leader"><picture><source type="image/webp" srcset="{{ url_for('static', filename=o.img ~ '.webp') }}"><img src="{{ url_for('static', filename=o.img ~ '.jpg') }}" alt="{{ o.name }}, {{ o.role }}" width="560" height="560" loading="lazy" decoding="async"></picture>
+<div><span class="eyebrow">{{ o.role }}</span><h3>{{ o.name|upper }}</h3><a class="leader-tel" href="tel:+{{ o.tel }}">{{ icon('phone', 14) }} {{ o.phone }}</a></div></div>{% endmacro %}
+
+{% macro outreach_grid(items) %}<div class="ogrid">{% for f, alt, cap in items %}<figure><picture><source type="image/webp" srcset="{{ url_for('static', filename='images/outreach/' ~ f ~ '.webp') }}"><img src="{{ url_for('static', filename='images/outreach/' ~ f ~ '.jpg') }}" alt="{{ alt }}" width="560" height="560" loading="lazy" decoding="async"></picture><figcaption>{{ cap }}</figcaption></figure>{% endfor %}</div>{% endmacro %}

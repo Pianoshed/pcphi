@@ -1,6 +1,7 @@
 """Editable organisational content. Wording follows the supplied PCPHI information."""
 ORG = {
     "name": "Participative Care Public Health Initiative", "short": "PCPHI",
+    "ceo": {"role": "Acting CEO", "name": "Osadipe Feyisayo Esther", "phone": "07036037349", "tel": "2347036037349", "img": "images/team/acting-ceo"},
     "tagline": "Building Healthier Communities Through Participation.",
     "lead": "We work alongside communities, partners and institutions to improve health outcomes, strengthen prevention and create sustainable public health solutions.",
     "vision": "To build a healthier and empowered society through meaningful community engagement and improved health outcomes for all.",
