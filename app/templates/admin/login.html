@@ -1,3 +1,36 @@
-{% extends "admin/base.html" %}{% from "_macros.html" import field %}
+{% extends "admin/base.html" %}
 {% block title %}Sign in{% endblock %}
-{% block content %}<div class="formcard narrow"><h1>Administrator sign in</h1><form method="post" data-loading novalidate>{{ form.hidden_tag() }}{{ field(form.username) }}{{ field(form.password) }}<button class="btn btn-solid" type="submit">Sign in</button></form></div>{% endblock %}
+{% block content %}
+<div class="auth-shell">
+ <div class="auth-card">
+  <div class="auth-head">
+   <span class="auth-lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg></span>
+   <h1>Administrator sign in</h1>
+   <p>Enter your credentials to manage the PCPHI website.</p>
+  </div>
+  <form method="post" data-loading novalidate>
+   {{ form.hidden_tag() }}
+   <div class="field{% if form.username.errors %} has-error{% endif %}">
+    <label for="username">{{ form.username.label.text }}</label>
+    {{ form.username(id='username', autocomplete='username', autofocus=true, **{'aria-describedby': 'username-e', 'aria-invalid': 'true' if form.username.errors else 'false'}) }}
+    <p class="err" id="username-e" role="alert">{{ form.username.errors|join(' ') }}</p>
+   </div>
+   <div class="field{% if form.password.errors %} has-error{% endif %}">
+    <label for="password">{{ form.password.label.text }}</label>
+    <div class="pw-wrap">
+     {{ form.password(id='password', autocomplete='current-password', **{'aria-describedby': 'password-e', 'aria-invalid': 'true' if form.password.errors else 'false'}) }}
+     <button type="button" class="pw-toggle" data-pw-toggle aria-controls="password" aria-pressed="false" aria-label="Show password">
+      <svg class="ico-show" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg class="ico-hide" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.7 10.7 0 0 1 12 5c6.5 0 10.5 7 10.5 7a17.6 17.6 0 0 1-3.2 3.9M6.6 6.6A17.4 17.4 0 0 0 1.5 12S5.5 19 12 19a10.4 10.4 0 0 0 4.6-1.1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+     </button>
+    </div>
+    <p class="pw-caps" id="password-caps" role="status" hidden>Caps Lock is on</p>
+    <p class="err" id="password-e" role="alert">{{ form.password.errors|join(' ') }}</p>
+   </div>
+   <button class="btn btn-solid auth-submit" type="submit">Sign in</button>
+  </form>
+  <p class="auth-note">Authorised staff only.</p>
+ </div>
+ <a class="auth-back" href="{{ url_for('public.home') }}">&larr; Back to website</a>
+</div>
+{% endblock %}
