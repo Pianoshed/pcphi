@@ -1,4 +1,5 @@
 from datetime import datetime
+from xml.sax.saxutils import escape
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, abort, send_from_directory, current_app, Response
 from sqlalchemy.exc import IntegrityError
 from .. import content as c
@@ -130,10 +131,18 @@ def sitemap():
     pages = [(url_for(e), None, *top.get(e, ("0.6", "monthly"))) for e in ("public.home", "public.about", "public.goals", "public.themes", "public.governance", "public.programmes", "public.resources", "public.get_involved", "public.subscribe", "public.contact")]
     pages += [(url_for(".programme_detail", slug=p.slug), p.updated_at, "0.7", "monthly") for p in Programme.query.filter_by(published=True)]
     pages += [(url_for(".article_detail", slug=a.slug), a.updated_at, "0.7", "monthly") for a in Article.query.filter_by(published=True)]
-    xml = "".join(f"<url><loc>{base}{u}</loc>{f'<lastmod>{d:%Y-%m-%d}</lastmod>' if d else ''}<changefreq>{cf}</changefreq><priority>{pr}</priority></url>" for u, d, pr, cf in pages)
-    return Response(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{xml}</urlset>', mimetype="application/xml")
+    xml = "".join(f"<url><loc>{escape(base + u)}</loc>{f'<lastmod>{d:%Y-%m-%d}</lastmod>' if d else ''}<changefreq>{cf}</changefreq><priority>{pr}</priority></url>" for u, d, pr, cf in pages)
+    return Response(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{xml}</urlset>', mimetype="application/xml", headers={"Cache-Control": "public, max-age=3600"})
 
 @bp.get("/robots.txt")
 def robots():
     base = current_app.config["SITE_URL"] or request.url_root.rstrip("/")
     return Response(f"User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /unsubscribe/\nSitemap: {base}/sitemap.xml\n", mimetype="text/plain")
+
+@bp.get("/llms.txt")
+def llms():
+    base = current_app.config["SITE_URL"] or request.url_root.rstrip("/")
+    lines = [f"# {c.ORG['name']}", "", f"> {c.ORG['name']} ({c.ORG['short']}), Ondo State, Nigeria.", "", "## Key pages", ""]
+    lines += [f"- [{t}]({base}{url_for(e)})" for t, e in (("About", "public.about"), ("Goals", "public.goals"), ("Thematic areas", "public.themes"), ("Governance", "public.governance"), ("Programmes", "public.programmes"), ("Resources", "public.resources"), ("Get involved", "public.get_involved"), ("Contact", "public.contact"))]
+    lines += ["", f"Sitemap: {base}/sitemap.xml", ""]
+    return Response("\n".join(lines), mimetype="text/plain")
